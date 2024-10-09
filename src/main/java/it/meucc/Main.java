@@ -12,19 +12,20 @@ public class Main {
     public static void main(String[] args) {
         try {
             Scanner sc = new Scanner(System.in);
-            System.out.println("INSERISCI LA STRINGA : ");
-            String outputString = sc.nextLine();
-            sc.close();
-            System.out.println("Client partito");
             Socket mySocket;
-            mySocket = new Socket("localhost", 4000);
-            System.out.println("CLIENT COLLEGATO");
+            mySocket = new Socket("10.22.9.15", 5637); //ip e porta gab
+            String stringRed = "";
             BufferedReader in = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
             DataOutputStream out = new DataOutputStream(mySocket.getOutputStream());
-            out.writeBytes(outputString + '\n');
-            String stringRed = in.readLine();
-            System.out.println("Stringa ricevuta : " + stringRed);
+            do {
+                System.out.println("INSERISCI LA STRINGA : ");
+                String outputString = sc.nextLine();
+                out.writeBytes(outputString + '\n');
+                stringRed = in.readLine();
+                System.out.println("Stringa ricevuta : " + stringRed);
+            } while(!stringRed.equals("!"));
             mySocket.close();
+            sc.close();
         } catch (UnknownHostException e) {
             System.out.println("ERRORE");
             e.printStackTrace();
