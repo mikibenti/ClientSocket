@@ -13,7 +13,7 @@ public class Main {
         try {
             Scanner sc = new Scanner(System.in);
             Socket mySocket;
-            mySocket = new Socket("10.22.9.15", 5637); //ip e porta gab
+            mySocket = new Socket("10.22.9.14", 5672); //ip e porta gab --> ("10.22.9.15", 5672);
             String stringRed = "";
             BufferedReader in = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
             DataOutputStream out = new DataOutputStream(mySocket.getOutputStream());
